@@ -1,4 +1,4 @@
-﻿namespace TodoApi.Models
+﻿namespace TodaysMonet.Models
 {
     public class TodoItem
     {

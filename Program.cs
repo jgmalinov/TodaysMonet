@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using TodoApi.Models;
+using TodaysMonet.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
