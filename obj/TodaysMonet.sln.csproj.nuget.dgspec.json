@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Georgi\\source\\repos\\TodoApi\\TodaysMonet.sln.csproj": {}
+    "C:\\Users\\UEFI\\source\\repos\\TodaysMonet\\TodaysMonet\\TodaysMonet.sln.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Georgi\\source\\repos\\TodoApi\\TodaysMonet.sln.csproj": {
+    "C:\\Users\\UEFI\\source\\repos\\TodaysMonet\\TodaysMonet\\TodaysMonet.sln.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Georgi\\source\\repos\\TodoApi\\TodaysMonet.sln.csproj",
+        "projectUniqueName": "C:\\Users\\UEFI\\source\\repos\\TodaysMonet\\TodaysMonet\\TodaysMonet.sln.csproj",
         "projectName": "TodaysMonet.sln",
-        "projectPath": "C:\\Users\\Georgi\\source\\repos\\TodoApi\\TodaysMonet.sln.csproj",
-        "packagesPath": "C:\\Users\\Georgi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Georgi\\source\\repos\\TodoApi\\obj\\",
+        "projectPath": "C:\\Users\\UEFI\\source\\repos\\TodaysMonet\\TodaysMonet\\TodaysMonet.sln.csproj",
+        "packagesPath": "C:\\Users\\UEFI\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\UEFI\\source\\repos\\TodaysMonet\\TodaysMonet\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Georgi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\UEFI\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
