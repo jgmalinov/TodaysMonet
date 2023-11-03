@@ -12,7 +12,6 @@ namespace TodaysMonet.DAL
         void InsertDailyStatus(Status status);
         void UpdateDailyStatus(Status status);
         void DeleteDailyStatus(Status status);
-        void Save();
 
     }
 }
