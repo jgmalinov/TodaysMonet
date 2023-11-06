@@ -1,6 +1,8 @@
 ﻿using TodaysMonet.Models;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 
 namespace TodaysMonet.DAL
 {
@@ -11,29 +13,30 @@ namespace TodaysMonet.DAL
         {
             this._context = context;
         }
-        public async Task<IEnumerable<Status>> GetMonthlyStatuses()
+        public async Task<ActionResult<IEnumerable<Status>>> GetMonthlyStatuses()
         {
-            return await _context.Statuses.Where(status => status.Timestamp <= DateTime.UtcNow && status.Timestamp >= DateTime.Today.AddMonths(-1)).OrderBy(status => status.Timestamp).ThenBy(status => status.StatusType).ToListAsync();
+            var result = await _context.Statuses.Where(status => status.Timestamp <= DateTime.UtcNow && status.Timestamp >= DateTime.Today.AddMonths(-1)).OrderBy(status => status.Timestamp).ThenBy(status => status.StatusType).ToListAsync();
+            return result;
         }
 
-        public async Task<IEnumerable<Status>> GetWeeklyStatuses()
+        public async Task<ActionResult<IEnumerable<Status>>> GetWeeklyStatuses()
         {
             return await _context.Statuses.Where(status => status.Timestamp <= DateTime.UtcNow && status.Timestamp >= DateTime.UtcNow.AddDays(-7)).OrderBy(status => status.Timestamp).ThenBy(status => status.StatusType).ToListAsync();
         }
 
-        public async Task<IEnumerable<Status>> GetMonthlyStatusesByType(Statuses StatusType)
+        public async Task<ActionResult<IEnumerable<Status>>> GetMonthlyStatusesByType(Statuses StatusType)
         {
             return await _context.Statuses.Where(status => (status.Timestamp <= DateTime.UtcNow && status.Timestamp >= DateTime.UtcNow.AddMonths(-1)) && status.StatusType == StatusType).OrderBy(status => status.Timestamp).ToListAsync();
         }
 
-        public IEnumerable<Status> GetWeeklyStatusesByType(Statuses StatusType)
+        public async Task<ActionResult<IEnumerable<Status>>> GetWeeklyStatusesByType(Statuses StatusType)
         {
-            return _context.Statuses.Where(status => (status.Timestamp <= DateTime.UtcNow && status.Timestamp >= DateTime.UtcNow.AddDays(-7)) && status.StatusType == StatusType).OrderBy(status => status.Timestamp).ToList();
+            return await _context.Statuses.Where(status => (status.Timestamp <= DateTime.UtcNow && status.Timestamp >= DateTime.UtcNow.AddDays(-7)) && status.StatusType == StatusType).OrderBy(status => status.Timestamp).ToListAsync();
         }
 
-        public Status GetDailyStatus(Statuses StatusType)
+        public async Task<ActionResult<Status>> GetDailyStatus(Statuses StatusType)
         {
-            var status = _context.Statuses.Where(status => status.StatusType == StatusType && status.Timestamp.Date == DateTime.Now.Date).FirstOrDefault();
+            var status = await _context.Statuses.Where(status => status.StatusType == StatusType && status.Timestamp.Date == DateTime.Now.Date).FirstOrDefaultAsync();
             return status;
         }
 

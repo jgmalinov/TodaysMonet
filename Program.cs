@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using TodaysMonet.Models;
+using TodaysMonet.DAL;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<StatusContext>(options => options.UseInMemoryDatabase(databaseName: "TestStatusDB"));
+builder.Services.AddScoped<IStatusRepository, StatusRepository>();
 
 var app = builder.Build();
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TodaysMonet.Models;
 using TodaysMonet.DAL;
 
@@ -13,10 +14,30 @@ namespace TodaysMonet.Controllers
         {
             this._statusRepository = statusRepository;
         }
-        [HttpGet]
-        public Task<ActionResult<IEnumerable<Status>>> GetMonthlyStatuses()
+        [HttpGet("Monthly")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<IEnumerable<Status>>> GetMonthlyStatuses()
         {
-            var result = _statusRepository.GetMonthlyStatuses();
+            var result = await _statusRepository.GetMonthlyStatuses();
+            return result;
+        }
+
+        [HttpGet("Weekly")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<IEnumerable<Status>>> GetWeeklyStatuses()
+        {
+            var result = await _statusRepository.GetWeeklyStatuses();
+            return result;
+        }
+
+        [HttpGet("Monthly/{StatusType:Status}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<IEnumerable<Status>>> GetMonthlyStatusesByType(Statuses StatusType)
+        {
+            var result = await _statusRepository.GetMonthlyStatusesByType(StatusType);
             return result;
         }
     }
