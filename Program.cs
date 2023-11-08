@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using TodaysMonet.Models;
 using TodaysMonet.DAL;
+using TodaysMonet.Constraints;
+using static TodaysMonet.Statuses;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +15,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<StatusContext>(options => options.UseInMemoryDatabase(databaseName: "TestStatusDB"));
 builder.Services.AddScoped<IStatusRepository, StatusRepository>();
+builder.Services.AddRouting(options => options.ConstraintMap.Add("Statuses", typeof(StatusesConstraint)));
 
 var app = builder.Build();
 

@@ -34,13 +34,13 @@ namespace TodaysMonet.DAL
             return await _context.Statuses.Where(status => (status.Timestamp <= DateTime.UtcNow && status.Timestamp >= DateTime.UtcNow.AddDays(-7)) && status.StatusType == StatusType).OrderBy(status => status.Timestamp).ToListAsync();
         }
 
-        public async Task<ActionResult<Status>> GetDailyStatus(Statuses StatusType)
+        public async Task<ActionResult<Status>> GetDailyStatusByType(Statuses StatusType)
         {
             var status = await _context.Statuses.Where(status => status.StatusType == StatusType && status.Timestamp.Date == DateTime.Now.Date).FirstOrDefaultAsync();
             return status;
         }
 
-        public void InsertDailyStatus(Status Status)
+        public Task<ActionResult<Status>> PostDailyStatus(Status Status)
         {
             _context.Statuses.Add(Status);
             _context.SaveChanges();
