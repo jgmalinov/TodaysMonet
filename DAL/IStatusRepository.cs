@@ -10,10 +10,10 @@ namespace TodaysMonet.DAL
         Task<ActionResult<IEnumerable<Status>>> GetMonthlyStatusesByType(Statuses StatusType);
         Task<ActionResult<IEnumerable<Status>>> GetWeeklyStatusesByType(Statuses StatusType);
         Task<ActionResult<Status>> GetDailyStatusByType(Statuses StatusType);
-        void PostDailyStatus(Status status);
-        void UpdateDailyStatus(Status status);
-        void DeleteDailyStatus(Status status);
-
+        Task PostDailyStatus(Status status);
+        Task UpdateDailyStatus(Status status);
+        Task DeleteDailyStatus(Status status);
+        bool StatusItemExists(Status status);
     }
 }
 

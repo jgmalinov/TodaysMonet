@@ -40,27 +40,33 @@ namespace TodaysMonet.DAL
             return status;
         }
 
-        public Task<ActionResult<Status>> PostDailyStatus(Status Status)
+        public async Task PostDailyStatus(Status Status)
         {
             _context.Statuses.Add(Status);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void UpdateDailyStatus(Status Status)
+        public async Task UpdateDailyStatus(Status Status)
         {
+            
             _context.Statuses.Update(Status);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void DeleteDailyStatus(Status Status)
+        public async Task DeleteDailyStatus(Status Status)
         {
             _context.Statuses.Remove(Status);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
-
+        
         public void Dispose()
         {
             _context.Dispose();    
+        }
+
+        public bool StatusItemExists(Status Status)
+        {
+            return _context.Statuses.Any(status => status.id == Status.id);
         }
     }
 }
