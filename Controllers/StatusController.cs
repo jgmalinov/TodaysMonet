@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using TodaysMonet.Models;
 using TodaysMonet.DAL;
 using Microsoft.AspNetCore.Http.HttpResults;
+using System.Runtime.CompilerServices;
 
 namespace TodaysMonet.Controllers
 {
@@ -83,16 +84,36 @@ namespace TodaysMonet.Controllers
                 return BadRequest();
             }
 
+            bool exists = _statusRepository.StatusItemExists(id);
+            if (!exists)
+            {
+                return NotFound();
+            }
             try
             {
                  await _statusRepository.UpdateDailyStatus(Status);
             }
-            catch (DbUpdateConcurrencyException) when (!_statusRepository.StatusItemExists(Status))
+            catch (DbUpdateConcurrencyException) when (!exists)
             {
                 return NotFound();
             }
 
             return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> DeleteDailyStatus(int id)
+        {
+            if (!_statusRepository.StatusItemExists(id))
+            {
+                return NotFound();
+            }
+            Status Status = await _statusRepository.GetDailyStatusById(id);
+            await _statusRepository.DeleteDailyStatus(Status);
+            return NoContent();
+
         }
     }
 }

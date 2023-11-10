@@ -13,6 +13,7 @@ namespace TodaysMonet.DAL
         {
             this._context = context;
         }
+        
         public async Task<ActionResult<IEnumerable<Status>>> GetMonthlyStatuses()
         {
             var result = await _context.Statuses.Where(status => status.Timestamp <= DateTime.UtcNow && status.Timestamp >= DateTime.Today.AddMonths(-1)).OrderBy(status => status.Timestamp).ThenBy(status => status.StatusType).ToListAsync();
@@ -40,6 +41,12 @@ namespace TodaysMonet.DAL
             return status;
         }
 
+        public async Task<Status> GetDailyStatusById(int id)
+        {
+            var result = await _context.Statuses.FirstOrDefaultAsync(status => status.id == id);
+            return result;
+        }
+
         public async Task PostDailyStatus(Status Status)
         {
             _context.Statuses.Add(Status);
@@ -58,15 +65,12 @@ namespace TodaysMonet.DAL
             _context.Statuses.Remove(Status);
             await _context.SaveChangesAsync();
         }
-        
-        public void Dispose()
+
+        public bool StatusItemExists(int id)
         {
-            _context.Dispose();    
+            return _context.Statuses.Any(status => status.id == id);
         }
 
-        public bool StatusItemExists(Status Status)
-        {
-            return _context.Statuses.Any(status => status.id == Status.id);
-        }
+
     }
 }
