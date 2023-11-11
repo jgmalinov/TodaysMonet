@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\UEFI\\source\\repos\\TodaysMonet\\TodaysMonet\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.TodaysMonet.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.TodaysMonet.props",
+      "PackagePath": "build\\TodaysMonet.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.TodaysMonet.props",
+      "PackagePath": "buildMultiTargeting\\TodaysMonet.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.TodaysMonet.props",
+      "PackagePath": "buildTransitive\\TodaysMonet.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

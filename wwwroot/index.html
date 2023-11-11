@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>TodaysMonet</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+    <h1>TodaysMonet</h1>
+    <main>
+        <section id="Statuses">
+            <h2>Statuses</h2>
+            <div id="Break">
+                <table>
+                    <caption>Break</caption>
+                    <thead>
+                        <tr>
+                            <th hidden>ID</th>
+                            <th>Timestamp</th>
+                            <th>Minutes Logged</th>
+                            <th>Deviation</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div id="Lunch">
+                <table>
+                    <caption>Lunch</caption>
+                    <thead>
+                        <tr>
+                            <th hidden>ID</th>
+                            <th>Timestamp</th>
+                            <th>Minutes Logged</th>
+                            <th>Deviation</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div id="Meeting">
+                <table>
+                    <caption>Meeting</caption>
+                    <thead>
+                        <tr>
+                            <th hidden>ID</th>
+                            <th>Timestamp</th>
+                            <th>Minutes Logged</th>
+                            <th>Deviation</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div id="Lunch"></div>
+            <div id="Teams"></div>
+        </section>
+
+        <section id="Add">
+            <h2>Add</h2>
+            <form id="addForm">
+            </form>
+        </section>
+
+        <section id="Update">
+            <h2>Update</h2>
+            <form id="updateForm">
+            </form>
+        </section>
+
+        <section id="Delete">
+            <h2>Delete</h2>
+            <form id="deleteForm">
+            </form>
+        </section>
+    </main>
+    <script src="js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        GetDailyStatuses();
+    </script>
+</body>
+</html>

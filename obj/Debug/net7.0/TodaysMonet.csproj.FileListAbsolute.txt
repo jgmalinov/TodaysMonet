@@ -34,3 +34,4 @@ C:\Users\UEFI\source\repos\TodaysMonet\TodaysMonet\obj\Debug\net7.0\refint\Today
 C:\Users\UEFI\source\repos\TodaysMonet\TodaysMonet\obj\Debug\net7.0\TodaysMonet.pdb
 C:\Users\UEFI\source\repos\TodaysMonet\TodaysMonet\obj\Debug\net7.0\TodaysMonet.genruntimeconfig.cache
 C:\Users\UEFI\source\repos\TodaysMonet\TodaysMonet\obj\Debug\net7.0\ref\TodaysMonet.dll
+C:\Users\UEFI\source\repos\TodaysMonet\TodaysMonet\bin\Debug\net7.0\TodaysMonet.staticwebassets.runtime.json

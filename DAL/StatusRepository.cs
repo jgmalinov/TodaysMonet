@@ -25,6 +25,11 @@ namespace TodaysMonet.DAL
             return await _context.Statuses.Where(status => status.Timestamp <= DateTime.UtcNow && status.Timestamp >= DateTime.UtcNow.AddDays(-7)).OrderBy(status => status.Timestamp).ThenBy(status => status.StatusType).ToListAsync();
         }
 
+        public async Task<ActionResult<IEnumerable<Status>>> GetDailyStatuses()
+        {
+            return await _context.Statuses.Where(status => status.Timestamp.Date == DateTime.UtcNow.Date).ToListAsync();
+        }
+
         public async Task<ActionResult<IEnumerable<Status>>> GetMonthlyStatusesByType(Statuses StatusType)
         {
             return await _context.Statuses.Where(status => (status.Timestamp <= DateTime.UtcNow && status.Timestamp >= DateTime.UtcNow.AddMonths(-1)) && status.StatusType == StatusType).OrderBy(status => status.Timestamp).ToListAsync();
@@ -71,6 +76,9 @@ namespace TodaysMonet.DAL
             return _context.Statuses.Any(status => status.id == id);
         }
 
-
+        public void Dispose()
+        {
+            _context.Dispose();
+        }
     }
 }

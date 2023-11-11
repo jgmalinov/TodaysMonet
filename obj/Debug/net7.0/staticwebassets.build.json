@@ -1,11 +1,37 @@
 {
   "Version": 1,
-  "Hash": "45yT6Z2LR3dfWuwvuPF7EmqFbKnwLNmetkhuma5GEG8=",
+  "Hash": "+1qbs/L79QFZvybkamL+sPqkM09SdGqHZAPy7HzztNQ=",
   "Source": "TodaysMonet",
   "BasePath": "_content/TodaysMonet",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "TodaysMonet\\wwwroot",
+      "Source": "TodaysMonet",
+      "ContentRoot": "C:\\Users\\UEFI\\source\\repos\\TodaysMonet\\TodaysMonet\\wwwroot\\",
+      "BasePath": "_content/TodaysMonet",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\UEFI\\source\\repos\\TodaysMonet\\TodaysMonet\\wwwroot\\index.html",
+      "SourceId": "TodaysMonet",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\UEFI\\source\\repos\\TodaysMonet\\TodaysMonet\\wwwroot\\",
+      "BasePath": "_content/TodaysMonet",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    }
+  ]
 }

@@ -34,6 +34,15 @@ namespace TodaysMonet.Controllers
             return result;
         }
 
+        [HttpGet("Daily")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<IEnumerable<Status>>> GetDailyStatuses()
+        {
+            var result = await _statusRepository.GetDailyStatuses();
+            return result;
+        }
+
         [HttpGet("Monthly/{StatusType:Statuses}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<Status>>> GetMonthlyStatusesByType(Statuses StatusType)
@@ -42,7 +51,7 @@ namespace TodaysMonet.Controllers
             return result;
         }
 
-        [HttpGet("Monthly/{StatusType:Statuses}")]
+        [HttpGet("Weekly/{StatusType:Statuses}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<Status>>> GetWeeklyStatusesByType(Statuses StatusType)
         {
@@ -114,6 +123,12 @@ namespace TodaysMonet.Controllers
             await _statusRepository.DeleteDailyStatus(Status);
             return NoContent();
 
+        }
+
+        public Task<ActionResult<IEnumerable<Status>>> Hleb()
+        {
+            var result = _statusRepository.GetDailyStatuses();
+            return result;
         }
     }
 }
