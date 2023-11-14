@@ -11,7 +11,7 @@
         <section id="Statuses">
             <h2>Statuses</h2>
             <div id="Break">
-                <table>
+                <table id="BreakTable">
                     <caption>Break</caption>
                     <thead>
                         <tr>
@@ -25,7 +25,7 @@
                 </table>
             </div>
             <div id="Lunch">
-                <table>
+                <table id="LunchTable">
                     <caption>Lunch</caption>
                     <thead>
                         <tr>
@@ -39,7 +39,7 @@
                 </table>
             </div>
             <div id="Meeting">
-                <table>
+                <table id="MeetingTable">
                     <caption>Meeting</caption>
                     <thead>
                         <tr>
@@ -76,7 +76,7 @@
     </main>
     <script src="js/site.js" asp-append-version="true"></script>
     <script type="text/javascript">
-        GetDailyStatuses();
+        GetStatuses("Monthly");
     </script>
 </body>
 </html>

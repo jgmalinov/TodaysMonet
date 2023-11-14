@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "+1qbs/L79QFZvybkamL+sPqkM09SdGqHZAPy7HzztNQ=",
+  "Hash": "BN/mUjatW2uBJHAXEtc78RAMkxYUhkdnsuz2PAw0suA=",
   "Source": "TodaysMonet",
   "BasePath": "_content/TodaysMonet",
   "Mode": "Default",
@@ -32,6 +32,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\index.html"
+    },
+    {
+      "Identity": "C:\\Users\\UEFI\\source\\repos\\TodaysMonet\\TodaysMonet\\wwwroot\\js\\site.js",
+      "SourceId": "TodaysMonet",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\UEFI\\source\\repos\\TodaysMonet\\TodaysMonet\\wwwroot\\",
+      "BasePath": "_content/TodaysMonet",
+      "RelativePath": "js/site.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\site.js"
     }
   ]
 }
