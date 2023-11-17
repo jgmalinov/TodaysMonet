@@ -8,33 +8,47 @@ function getStatuses(timeframe) {
 
 function displayStatuses(data) {
     console.log(data);
-    const BreakTable = document.GetElementById("BreakTable");
-    const LunchTable = document.GetElementById("LunchTable");
-    const MeetingTable = document.GetElementById("MeetingTable");
+    let newBreakBody = document.createElement("tbody");
+    let newLunchBody = document.createElement("tbody");
+    let newMeetingBody = document.createElement("tbody");
+
+    const BreakBody = document.GetElementById("BreakBody");
+    const LunchBody = document.GetElementById("LunchBody");
+    const MeetingBody = document.GetElementById("MeetingBody");
+
+    let BodiesArray = [(BreakBody, newBreakBody), (LunchBody, newLunchBody), (MeetingBody, newMeetingBody)];
 
     for (let status in data) {
         switch (status.StatusType) {
             case 'Break':
-                addTableEntry(BreakTable, status);
+                addTableEntry(newBreakBody, status);
             case 'Lunch':
-                addTableEntry(LunchTable, status);
+                addTableEntry(newLunchBody, status);
             case 'Meeting':
-                addTableEntry(MeetingTable, status);
+                addTableEntry(newMeetingBody, status);
         }
+    }
+
+    for (let tup in BodiesArray) {
+        tup[0].parentNode.replaceChild(tup[1], tup[0]);
     }
 }
 
-function addTableEntry(table, status) {
-    table.insertRow(-1);
+function addTableEntry(tbody, status) {
+    tbody.insertRow(-1);
     let count = 0;
-    let c1 = table.insertCell(0);
-    let c2 = table.insertCell(1);
-    let c3 = table.insertCell(2);
-    let c4 = table.insertCell(4);
+    let c1 = tbody.insertCell(0);
+    let c2 = tbody.insertCell(1);
+    let c3 = tbody.insertCell(2);
+    let c4 = tbody.insertCell(4);
 
     c1.innerText = status.id;
     c2.innerText = status.Timestamp;
     c3.innerText = status.MinutesLogged;
     c4.innerText = status.DeviationFromTarget;
+}
+
+function replaceTableEntries(tbody, newTbody) {
+    tbody.parentNode.replaceChild(newTbody, tbody);
 }
 
