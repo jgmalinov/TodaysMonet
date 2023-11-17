@@ -6,6 +6,32 @@ function getStatuses(timeframe) {
         .catch(error => console.log(error));
 }
 
+function postStatus() {
+    const statusType = document.getElementById('statusTypes').value;
+    const timestamp = document.getElementById('Timestamp').value;
+    const minutesLogged = document.getElementById('MinutesLogged').value;
+    const deviationFromTarget = document.getElementById('DeviationFromTarget').value;
+
+    const status = {
+        'StatusType': statusType,
+        'Timestamp': timestamp,
+        'MinutesLogged': minutesLogged,
+        'DeviationFromTarget': deviationFromTarget
+    }
+    fetch(uri, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(status)
+    })
+        .then(res => res.json())
+        .then(JSONres => getStatuses())
+        .catch(error => console.error('Unable to add item', error));
+    return;
+}
+
 function displayStatuses(data) {
     console.log(data);
     let newBreakBody = document.createElement("tbody");

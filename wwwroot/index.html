@@ -58,7 +58,24 @@
 
         <section id="Add">
             <h2>Add</h2>
-            <form id="addForm">
+            <form action="javascript:void(0);" id="addForm" method="post" onsubmit="postStatus()">
+                <label for="statusTypes">Status Type</label>
+                <select id="statusTypes" name="statusTypes">
+                    <option value="Break">Break</option>
+                    <option value="Lunch">Lunch</option>
+                    <option value="Meeting">Meeting</option>
+                </select>
+                <label for="Timestamp">Timestamp</label>
+                <input type="datetime-local" id="Timestamp" name="Timestamp" />
+                
+                <label for="MinutesLogged">Minutes Logged</label>
+                <input type="number" id="MinutesLogged" name="MinutesLogged" />
+
+                <label for="DeviationFromTarget">Deviation From Target</label>
+                <input type="number" id="DeviationFromTarget" name="DeviationFromTarget" />
+
+                <label for="Submit">Submit</label>
+                <input type="submit" />
             </form>
         </section>
 
