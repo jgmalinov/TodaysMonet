@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\UEFI\\source\\repos\\TodaysMonet\\TodaysMonet\\TodaysMonet.csproj": {}
+    "C:\\Users\\Georgi\\source\\repos\\TodaysMonet\\TodaysMonet.csproj": {}
   },
   "projects": {
-    "C:\\Users\\UEFI\\source\\repos\\TodaysMonet\\TodaysMonet\\TodaysMonet.csproj": {
+    "C:\\Users\\Georgi\\source\\repos\\TodaysMonet\\TodaysMonet.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\UEFI\\source\\repos\\TodaysMonet\\TodaysMonet\\TodaysMonet.csproj",
+        "projectUniqueName": "C:\\Users\\Georgi\\source\\repos\\TodaysMonet\\TodaysMonet.csproj",
         "projectName": "TodaysMonet",
-        "projectPath": "C:\\Users\\UEFI\\source\\repos\\TodaysMonet\\TodaysMonet\\TodaysMonet.csproj",
-        "packagesPath": "C:\\Users\\UEFI\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\UEFI\\source\\repos\\TodaysMonet\\TodaysMonet\\obj\\",
+        "projectPath": "C:\\Users\\Georgi\\source\\repos\\TodaysMonet\\TodaysMonet.csproj",
+        "packagesPath": "C:\\Users\\Georgi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Georgi\\source\\repos\\TodaysMonet\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\UEFI\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Georgi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -77,7 +77,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

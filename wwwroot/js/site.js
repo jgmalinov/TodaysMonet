@@ -8,15 +8,19 @@ function getStatuses(timeframe) {
 
 function postStatus() {
     const statusType = document.getElementById('statusTypes').value;
-    const timestamp = document.getElementById('Timestamp').value;
-    const minutesLogged = document.getElementById('MinutesLogged').value;
-    const deviationFromTarget = document.getElementById('DeviationFromTarget').value;
+    const timestamp = new Date(document.getElementById('Timestamp').value);
+    console.log(typeof timestamp);
+    var minutesLogged = document.getElementById('MinutesLogged').value;
+    minutesLogged == '' ? minutesLogged = 0 : null;
+    var deviationFromTarget = document.getElementById('DeviationFromTarget').value;
+    deviationFromTarget == '' ? deviationFromTarget = 0 : null;
 
-    const status = {
-        'StatusType': statusType,
-        'Timestamp': timestamp,
-        'MinutesLogged': minutesLogged,
-        'DeviationFromTarget': deviationFromTarget
+    const Status = {
+        
+            'StatusType': statusType,
+            'Timestamp': timestamp.toISOString(),
+            'MinutesLogged': minutesLogged,
+            'DeviationFromTarget': deviationFromTarget
     }
     fetch(uri, {
         method: 'POST',
@@ -24,10 +28,13 @@ function postStatus() {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(status)
+        body: JSON.stringify(Status)
     })
         .then(res => res.json())
-        .then(JSONres => getStatuses())
+        .then(JSONres => {
+            console.log(JSONres);
+            getStatuses('Daily');
+        })
         .catch(error => console.error('Unable to add item', error));
     return;
 }

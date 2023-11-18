@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "BN/mUjatW2uBJHAXEtc78RAMkxYUhkdnsuz2PAw0suA=",
+  "Hash": "s2F8chO0dVKXxFhnsI09zoejvWJMVEbPHLwKzMMF8Q4=",
   "Source": "TodaysMonet",
   "BasePath": "_content/TodaysMonet",
   "Mode": "Default",
@@ -10,22 +10,24 @@
     {
       "Name": "TodaysMonet\\wwwroot",
       "Source": "TodaysMonet",
-      "ContentRoot": "C:\\Users\\UEFI\\source\\repos\\TodaysMonet\\TodaysMonet\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Georgi\\source\\repos\\TodaysMonet\\wwwroot\\",
       "BasePath": "_content/TodaysMonet",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\UEFI\\source\\repos\\TodaysMonet\\TodaysMonet\\wwwroot\\index.html",
+      "Identity": "C:\\Users\\Georgi\\source\\repos\\TodaysMonet\\wwwroot\\index.html",
       "SourceId": "TodaysMonet",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\UEFI\\source\\repos\\TodaysMonet\\TodaysMonet\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Georgi\\source\\repos\\TodaysMonet\\wwwroot\\",
       "BasePath": "_content/TodaysMonet",
       "RelativePath": "index.html",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
@@ -34,15 +36,17 @@
       "OriginalItemSpec": "wwwroot\\index.html"
     },
     {
-      "Identity": "C:\\Users\\UEFI\\source\\repos\\TodaysMonet\\TodaysMonet\\wwwroot\\js\\site.js",
+      "Identity": "C:\\Users\\Georgi\\source\\repos\\TodaysMonet\\wwwroot\\js\\site.js",
       "SourceId": "TodaysMonet",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\UEFI\\source\\repos\\TodaysMonet\\TodaysMonet\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Georgi\\source\\repos\\TodaysMonet\\wwwroot\\",
       "BasePath": "_content/TodaysMonet",
       "RelativePath": "js/site.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",

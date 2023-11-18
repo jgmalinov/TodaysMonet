@@ -13,6 +13,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddHttpLogging(o => { });
 builder.Services.AddDbContext<StatusContext>(options => options.UseInMemoryDatabase(databaseName: "TestStatusDB"));
 builder.Services.AddScoped<IStatusRepository, StatusRepository>();
 builder.Services.AddRouting(options => options.ConstraintMap.Add("Statuses", typeof(StatusesConstraint)));
@@ -35,5 +36,7 @@ app.MapControllers();
 app.UseDefaultFiles();
 
 app.UseStaticFiles();
+
+app.UseHttpLogging();
 
 app.Run();

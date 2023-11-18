@@ -1,11 +1,11 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\UEFI\\source\\repos\\TodaysMonet\\TodaysMonet\\wwwroot\\index.html",
+      "Id": "C:\\Users\\Georgi\\source\\repos\\TodaysMonet\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
     },
     {
-      "Id": "C:\\Users\\UEFI\\source\\repos\\TodaysMonet\\TodaysMonet\\wwwroot\\js\\site.js",
+      "Id": "C:\\Users\\Georgi\\source\\repos\\TodaysMonet\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {

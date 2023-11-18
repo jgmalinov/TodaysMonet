@@ -1,4 +1,7 @@
-﻿namespace TodaysMonet.Models
+﻿using System.ComponentModel;
+using System.Text.Json.Serialization;
+
+namespace TodaysMonet.Models
 {
     public class Status
     {
