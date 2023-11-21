@@ -1,0 +1,15 @@
+﻿body {
+}
+
+#Statuses {
+    display: flex;
+}
+table, th, td {
+    border: 1px solid;
+    border-collapse: collapse;
+}
+
+caption {
+    font-size: 32px;
+    border: 1px double;
+}

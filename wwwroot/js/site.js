@@ -1,4 +1,5 @@
 ﻿const uri = '/Status';
+// FETCH REQUESTS
 function getStatuses(timeframe) {
     fetch(uri + `/${timeframe}`)
         .then(response => response.json())
@@ -42,6 +43,7 @@ function postStatus() {
     return;
 }
 
+// UTILITY FUNCTIONS
 function displayStatuses(data) {
     console.log(data);
     let newBreakBody = document.createElement("tbody");
@@ -77,6 +79,7 @@ function addTableEntry(tbody, status) {
     tbody.insertRow(-1);
     let count = 0;
     let c1 = tbody.lastChild.insertCell(0);
+    c1.hidden = true;
     let c2 = tbody.lastChild.insertCell(1);
     let c3 = tbody.lastChild.insertCell(2);
     let c4 = tbody.lastChild.insertCell(3);
@@ -91,3 +94,14 @@ function replaceTableEntries(tbody, newTbody) {
     tbody.parentNode.replaceChild(newTbody, tbody);
 }
 
+function addStatus(statusType) {
+    let minutesLogged;
+    let deviationFromTarget;
+    const timestamp = new Date(Date.now());
+    let intervalID;
+
+    switch (statusType) {
+        case ('Break'):
+            intervalId = setInterval();
+    }
+}

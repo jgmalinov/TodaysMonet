@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\Georgi\\source\\repos\\TodaysMonet\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
       "Id": "C:\\Users\\Georgi\\source\\repos\\TodaysMonet\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
     },
