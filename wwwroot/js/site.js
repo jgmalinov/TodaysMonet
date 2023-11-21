@@ -2,7 +2,10 @@
 function getStatuses(timeframe) {
     fetch(uri + `/${timeframe}`)
         .then(response => response.json())
-        .then(data => DisplayStatuses(data))
+        .then(data => {
+            console.log(data);
+            displayStatuses(data);
+        })
         .catch(error => console.log(error));
 }
 
@@ -42,17 +45,20 @@ function postStatus() {
 function displayStatuses(data) {
     console.log(data);
     let newBreakBody = document.createElement("tbody");
+    newBreakBody.id = 'BreakBody';
     let newLunchBody = document.createElement("tbody");
+    newLunchBody.id = 'LunchBody';
     let newMeetingBody = document.createElement("tbody");
+    newMeetingBody.id = 'MeetingBody';
 
-    const BreakBody = document.GetElementById("BreakBody");
-    const LunchBody = document.GetElementById("LunchBody");
-    const MeetingBody = document.GetElementById("MeetingBody");
+    const BreakBody = document.getElementById("BreakBody");
+    const LunchBody = document.getElementById("LunchBody");
+    const MeetingBody = document.getElementById("MeetingBody");
 
-    let BodiesArray = [(BreakBody, newBreakBody), (LunchBody, newLunchBody), (MeetingBody, newMeetingBody)];
+    let BodiesArray = [[BreakBody, newBreakBody], [LunchBody, newLunchBody], [MeetingBody, newMeetingBody]];
 
-    for (let status in data) {
-        switch (status.StatusType) {
+    data.forEach(status => {
+        switch (status.statusType) {
             case 'Break':
                 addTableEntry(newBreakBody, status);
             case 'Lunch':
@@ -60,25 +66,25 @@ function displayStatuses(data) {
             case 'Meeting':
                 addTableEntry(newMeetingBody, status);
         }
-    }
+    });
 
-    for (let tup in BodiesArray) {
+    BodiesArray.forEach(tup => {
         tup[0].parentNode.replaceChild(tup[1], tup[0]);
-    }
+    });
 }
 
 function addTableEntry(tbody, status) {
     tbody.insertRow(-1);
     let count = 0;
-    let c1 = tbody.insertCell(0);
-    let c2 = tbody.insertCell(1);
-    let c3 = tbody.insertCell(2);
-    let c4 = tbody.insertCell(4);
+    let c1 = tbody.lastChild.insertCell(0);
+    let c2 = tbody.lastChild.insertCell(1);
+    let c3 = tbody.lastChild.insertCell(2);
+    let c4 = tbody.lastChild.insertCell(3);
 
     c1.innerText = status.id;
-    c2.innerText = status.Timestamp;
-    c3.innerText = status.MinutesLogged;
-    c4.innerText = status.DeviationFromTarget;
+    c2.innerText = status.timestamp;
+    c3.innerText = status.minutesLogged;
+    c4.innerText = status.deviationFromTarget;
 }
 
 function replaceTableEntries(tbody, newTbody) {
