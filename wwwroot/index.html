@@ -64,11 +64,12 @@
                     <option value="Lunch">Lunch</option>
                     <option value="Meeting">Meeting</option>
                 </select>
-                <button onclick="addStatus('Break')">Break</button>
-                <buttion onclick="addStatus('Lunch')">Lunch</buttion>
-                <button onclick="addStatus('Meeting')">Meeting</button>
             </form>
-
+            <button onclick="startTimer('Break')">Break</button>
+            <button onclick="startTimer('Lunch')">Lunch</button>
+            <button onclick="startTimer('Meeting')">Meeting</button>
+            <div id="timer"></div>
+            <div id="intervalID" hidden></div>
         </section>
 
         <h2>Update</h2>

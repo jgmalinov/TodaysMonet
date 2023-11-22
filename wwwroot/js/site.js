@@ -97,11 +97,43 @@ function replaceTableEntries(tbody, newTbody) {
 function addStatus(statusType) {
     let minutesLogged;
     let deviationFromTarget;
-    const timestamp = new Date(Date.now());
     let intervalID;
 
     switch (statusType) {
         case ('Break'):
             intervalId = setInterval();
     }
+}
+
+function startTimer(statusType) {
+    let date = new Date(0);
+    switch (statusType) {
+        case 'Break':
+            date.setHours(0, 30, 0, 0);
+            break;
+        case 'Lunch':
+            date.setHours(1, 0, 0, 0);
+            break;
+        case 'Meeting':
+            date.setHours(2, 0, 0, 0);
+            break;
+    }
+    
+    let time = date.toTimeString().slice(0, 8);
+    let timer = document.getElementById('timer');
+    let intervalIDDiv = document.getElementById('intervalID');
+    timer.innerHTML = time;
+    intervalID = setInterval(advanceTimer, 1000, statusType);
+    intervalIDDiv.innerHTML = intervalID;
+}
+function advanceTimer(statusType) {
+    let timer = document.getElementById('timer');
+    let currentTime = timer.innerHTML;
+    let hours = parseInt(currentTime.slice(0, 2));
+    let minutes = parseInt(currentTime.slice(3, 5));
+    let seconds = parseInt(currentTime.slice(6));
+    // const currentTimeMilliseconds = ((hours * 60 + minutes) * 60 + seconds) * 1000;
+    let newTime = new Date(0);
+    newTime.setHours(hours, minutes, seconds - 1, 0);
+    timer.innerHTML = newTime.toTimeString().slice(0, 8);
 }
