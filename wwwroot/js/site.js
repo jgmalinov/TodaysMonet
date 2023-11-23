@@ -106,34 +106,75 @@ function addStatus(statusType) {
 }
 
 function startTimer(statusType) {
-    let date = new Date(0);
-    switch (statusType) {
-        case 'Break':
-            date.setHours(0, 30, 0, 0);
-            break;
-        case 'Lunch':
-            date.setHours(1, 0, 0, 0);
-            break;
-        case 'Meeting':
-            date.setHours(2, 0, 0, 0);
-            break;
-    }
-    
-    let time = date.toTimeString().slice(0, 8);
     let timer = document.getElementById('timer');
     let intervalIDDiv = document.getElementById('intervalID');
-    timer.innerHTML = time;
-    intervalID = setInterval(advanceTimer, 1000, statusType);
+
+    if (timer.innerHTML == "") {
+        let date = new Date(0);
+        switch (statusType) {
+            case 'Break':
+                date.setHours(0, 0, 15, 0);
+                break;
+            case 'Lunch':
+                date.setHours(1, 0, 0, 0);
+                break;
+            case 'Meeting':
+                date.setHours(2, 0, 0, 0);
+                break;
+        }
+
+        let time = date.toTimeString().slice(0, 8);
+        timer.innerHTML = time;
+    }
+
+    intervalID = setInterval(advanceTimer, 1000);
     intervalIDDiv.innerHTML = intervalID;
 }
-function advanceTimer(statusType) {
+function advanceTimer() {
     let timer = document.getElementById('timer');
     let currentTime = timer.innerHTML;
-    let hours = parseInt(currentTime.slice(0, 2));
-    let minutes = parseInt(currentTime.slice(3, 5));
-    let seconds = parseInt(currentTime.slice(6));
-    // const currentTimeMilliseconds = ((hours * 60 + minutes) * 60 + seconds) * 1000;
+    let hours, minutes, seconds;
+    const overdue = currentTime[0] == '-';
+    if (overdue) {
+        hours = parseInt(currentTime.slice(1, 3));
+        minutes = parseInt(currentTime.slice(4, 6));
+        seconds = parseInt(currentTime.slice(7));
+        timer.style.color = 'red';
+
+    } else {
+        hours = parseInt(currentTime.slice(0, 2));
+        minutes = parseInt(currentTime.slice(3, 5));
+        seconds = parseInt(currentTime.slice(6));
+        timer.style.color = 'black';
+    }
+    
+    const currentTimeMilliseconds = ((hours * 60 + minutes) * 60 + seconds) * 1000;
+    const shouldAddOrSubtract = overdue || currentTimeMilliseconds == 0;
+    let secondsModifier, newTimeString;
+
+    if (shouldAddOrSubtract) {
+        secondsModifier = 1;
+        newTimeString = '-';
+    } else {
+        secondsModifier = -1;
+        newTimeString = '';
+    }
+
     let newTime = new Date(0);
-    newTime.setHours(hours, minutes, seconds - 1, 0);
-    timer.innerHTML = newTime.toTimeString().slice(0, 8);
+    newTime.setHours(hours, minutes, seconds + secondsModifier, 0);
+
+
+    newTimeString += newTime.toTimeString().slice(0, 8);
+    timer.innerHTML = newTimeString;
+}
+
+function pauseInterval() {
+    const intervalID = document.getElementById('intervalID');
+    if (intervalID.innerHTML != "") {
+        clearInterval(parseInt(intervalID.innerHTML));
+        intervalID.innerHTML = "";
+    } else {
+        startTimer();
+    }
+    
 }
