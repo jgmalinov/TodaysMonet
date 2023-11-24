@@ -10,22 +10,7 @@ function getStatuses(timeframe) {
         .catch(error => console.log(error));
 }
 
-function postStatus() {
-    const statusType = document.getElementById('statusTypes').value;
-    const timestamp = new Date(document.getElementById('Timestamp').value);
-    console.log(typeof timestamp);
-    var minutesLogged = document.getElementById('MinutesLogged').value;
-    minutesLogged == '' ? minutesLogged = 0 : null;
-    var deviationFromTarget = document.getElementById('DeviationFromTarget').value;
-    deviationFromTarget == '' ? deviationFromTarget = 0 : null;
-
-    const Status = {
-        
-            'StatusType': statusType,
-            'Timestamp': timestamp.toISOString(),
-            'MinutesLogged': minutesLogged,
-            'DeviationFromTarget': deviationFromTarget
-    }
+function postStatus(status) {
     fetch(uri, {
         method: 'POST',
         headers: {
@@ -44,6 +29,16 @@ function postStatus() {
 }
 
 // UTILITY FUNCTIONS
+
+function submitStatus(statusType) {
+    const Status = {
+
+        'StatusType': statusType,
+        'Timestamp': timestamp.toISOString(),
+        'MinutesLogged': minutesLogged,
+        'DeviationFromTarget': deviationFromTarget
+    }
+}
 function displayStatuses(data) {
     console.log(data);
     let newBreakBody = document.createElement("tbody");
@@ -90,10 +85,6 @@ function addTableEntry(tbody, status) {
     c4.innerText = status.deviationFromTarget;
 }
 
-function replaceTableEntries(tbody, newTbody) {
-    tbody.parentNode.replaceChild(newTbody, tbody);
-}
-
 function addStatus(statusType) {
     let minutesLogged;
     let deviationFromTarget;
@@ -132,23 +123,8 @@ function startTimer(statusType) {
 }
 function advanceTimer() {
     let timer = document.getElementById('timer');
-    let currentTime = timer.innerHTML;
-    let hours, minutes, seconds;
-    const overdue = currentTime[0] == '-';
-    if (overdue) {
-        hours = parseInt(currentTime.slice(1, 3));
-        minutes = parseInt(currentTime.slice(4, 6));
-        seconds = parseInt(currentTime.slice(7));
-        timer.style.color = 'red';
-
-    } else {
-        hours = parseInt(currentTime.slice(0, 2));
-        minutes = parseInt(currentTime.slice(3, 5));
-        seconds = parseInt(currentTime.slice(6));
-        timer.style.color = 'black';
-    }
-    
-    const currentTimeMilliseconds = ((hours * 60 + minutes) * 60 + seconds) * 1000;
+    let [overdue, hours, minutes, seconds] = getFormattedTime(timer);
+    const currentTimeMilliseconds = convertToMilliseconds(hours, minutes, seconds);
     const shouldAddOrSubtract = overdue || currentTimeMilliseconds == 0;
     let secondsModifier, newTimeString;
 
@@ -176,5 +152,28 @@ function pauseInterval() {
     } else {
         startTimer();
     }
-    
+}
+
+function getFormattedTime(timer) {
+    let currentTime = timer.innerHTML;
+    let hours, minutes, seconds;
+    const overdue = currentTime[0] == '-';
+    if (overdue) {
+        hours = parseInt(currentTime.slice(1, 3));
+        minutes = parseInt(currentTime.slice(4, 6));
+        seconds = parseInt(currentTime.slice(7));
+        timer.style.color = 'red';
+
+    } else {
+        hours = parseInt(currentTime.slice(0, 2));
+        minutes = parseInt(currentTime.slice(3, 5));
+        seconds = parseInt(currentTime.slice(6));
+        timer.style.color = 'black';
+    }
+
+    return [overdue, hours, minutes, seconds];
+}
+
+function convertToMilliseconds(hours, minutes, seconds) {
+    return ((hours * 60 + minutes) * 60 + seconds) * 1000;
 }
