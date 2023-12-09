@@ -10,6 +10,11 @@ function getStatuses(timeframe) {
         .catch(error => console.log(error));
 }
 
+function logStatus() {
+    const statusType = document.getElementById('statusTypes').value;
+    postStatus(statusType);
+}
+
 function postStatus(status) {
     fetch(uri, {
         method: 'POST',
@@ -97,6 +102,8 @@ function addStatus(statusType) {
 }
 
 function startTimer(statusType) {
+    const statusTypeDOM = document.getElementById('statusTypes');
+    statusTypeDOM.value = statusType;
     let timer = document.getElementById('timer');
     let intervalIDDiv = document.getElementById('intervalID');
 
@@ -128,6 +135,13 @@ function advanceTimer() {
     const shouldAddOrSubtract = overdue || currentTimeMilliseconds == 0;
     let secondsModifier, newTimeString;
 
+    // If time elapsed, trigger alarm
+    if (currentTimeMilliseconds == 0) {
+        const alarm = document.getElementById('alarm');
+        alarm.loop = true;
+        alarm.play(); 
+    }
+
     if (shouldAddOrSubtract) {
         secondsModifier = 1;
         newTimeString = '-';
@@ -145,12 +159,25 @@ function advanceTimer() {
 }
 
 function pauseInterval() {
+    const pauseResumeButton = document.getElementById("pauseResume");
+    if (customClearInterval()) {
+        pauseResumeButton.innerHTML = "Resume";
+        return;
+    } else {
+        const status = document.getElementById('statusTypes').value;
+        startTimer(status);
+        pauseResumeButton.innerHTML = "Pause";
+    }
+}
+
+function customClearInterval() {
     const intervalID = document.getElementById('intervalID');
     if (intervalID.innerHTML != "") {
         clearInterval(parseInt(intervalID.innerHTML));
         intervalID.innerHTML = "";
+        return true;
     } else {
-        startTimer();
+        return false;
     }
 }
 

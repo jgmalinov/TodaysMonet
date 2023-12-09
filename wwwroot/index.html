@@ -58,17 +58,16 @@
 
         <h2>Add</h2>
         <section id="Add">
-            <form action="javascript:void(0);" id="addForm" method="post" onsubmit="postStatus()" hidden>
-                <select id="statusTypes" name="statusTypes">
-                    <option value="Break">Break</option>
-                    <option value="Lunch">Lunch</option>
-                    <option value="Meeting">Meeting</option>
-                </select>
-            </form>
+            <select id="statusTypes" name="statusTypes" hidden>
+                <option value="Break">Break</option>
+                <option value="Lunch">Lunch</option>
+                <option value="Meeting">Meeting</option>
+            </select>
             <button onclick="startTimer('Break')">Break</button>
             <button onclick="startTimer('Lunch')">Lunch</button>
             <button onclick="startTimer('Meeting')">Meeting</button>
-            <button onclick="pauseInterval()">Pause</button>
+            <button onclick="pauseInterval()" id="pauseResume">Pause</button>
+            <button onclick="logStatus()">Log</button>
             <div id="timer"></div>
             <div id="intervalID" hidden></div>
         </section>
@@ -84,6 +83,7 @@
             <form id="deleteForm">
             </form>
         </section>
+        <audio controls src="media/alarm.wav" id="alarm"></audio>
     </main>
     <script src="js/site.js" asp-append-version="true"></script>
     <script type="text/javascript">

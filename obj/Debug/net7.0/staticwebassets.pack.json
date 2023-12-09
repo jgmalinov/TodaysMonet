@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
+      "Id": "C:\\Users\\Georgi\\source\\repos\\TodaysMonet\\wwwroot\\media\\alarm.wav",
+      "PackagePath": "staticwebassets\\media\\alarm.wav"
+    },
+    {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.TodaysMonet.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TodaysMonet")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bf7df47cf208e717f8151958cb52938366a65fa2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+80312d755e91083db13211b21748947d17963965")]
 [assembly: System.Reflection.AssemblyProductAttribute("TodaysMonet")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TodaysMonet")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

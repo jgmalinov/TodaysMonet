@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "dCnyuJ5yQeNU/Vl0BgMCeWsPtOGaVcI1p5op0wxR+Vc=",
+  "Hash": "ZiFjSvv9oZic33EGT/yKwNshkPR+zpVAo2vr5IsbxVY=",
   "Source": "TodaysMonet",
   "BasePath": "_content/TodaysMonet",
   "Mode": "Default",
@@ -72,6 +72,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
+    },
+    {
+      "Identity": "C:\\Users\\Georgi\\source\\repos\\TodaysMonet\\wwwroot\\media\\alarm.wav",
+      "SourceId": "TodaysMonet",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Georgi\\source\\repos\\TodaysMonet\\wwwroot\\",
+      "BasePath": "_content/TodaysMonet",
+      "RelativePath": "media/alarm.wav",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\media\\alarm.wav"
     }
   ]
 }
