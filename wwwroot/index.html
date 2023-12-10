@@ -58,16 +58,17 @@
 
         <h2>Add</h2>
         <section id="Add">
-            <select id="statusTypes" name="statusTypes" hidden>
-                <option value="Break">Break</option>
-                <option value="Lunch">Lunch</option>
-                <option value="Meeting">Meeting</option>
-            </select>
-            <button onclick="startTimer('Break')">Break</button>
-            <button onclick="startTimer('Lunch')">Lunch</button>
-            <button onclick="startTimer('Meeting')">Meeting</button>
+            <h3 id="currentStatus"></h3>
+
+            <div id="statusButtons">
+                <button onclick="startTimer('Break')">Break</button>
+                <button onclick="startTimer('Lunch')">Lunch</button>
+                <button onclick="startTimer('Meeting')">Meeting</button>
+            </div>
+
             <button onclick="pauseInterval()" id="pauseResume">Pause</button>
-            <button onclick="logStatus()">Log</button>
+            <button onclick="submitStatus()">Log</button>
+            <button onclick="stopAlarm()" hidden id="stopAlarmButton">Stop Alarm</button>
             <div id="timer"></div>
             <div id="intervalID" hidden></div>
         </section>

@@ -22,7 +22,7 @@ function postStatus(status) {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(Status)
+        body: JSON.stringify(status)
     })
         .then(res => res.json())
         .then(JSONres => {
@@ -35,14 +35,42 @@ function postStatus(status) {
 
 // UTILITY FUNCTIONS
 
-function submitStatus(statusType) {
-    const Status = {
+function submitStatus() {
+    const statusesToMinutesMapping = [{ status: 'Break', minutes: 30 }, { status: 'Lunch', minutes: 60 }, { status: 'Meeting', minutes: 120 }];
+    const statusType = document.getElementById('currentStatus').innerHTML;
+    const standardStatusMinutes = statusesToMinutesMapping.find(item => item.status = statusType).minutes;
+    const timer = document.getElementById('timer');
+
+    // Determine minutes logged & target deviation
+    const [overdue, hours, minutes, seconds] = getFormattedTime(timer);
+    const allInMinutes = convertToMinutes(hours, minutes, seconds); 
+    const timestamp = new Date();
+    
+    let minutesLogged;
+    let deviationFromTarget;
+
+    if (overdue) {
+        const minutesOverdue = allInMinutes;
+        minutesLogged = parseInt(standardStatusMinutes + minutesOverdue);
+        deviationFromTarget = parseInt(minutesOverdue);
+    } else {
+        minutesLogged = parseInt(allInMinutes);
+        deviationFromTarget = parseInt(allInMinutes - standardStatusMinutes);
+    }
+    
+    
+
+    console.log(timestamp);
+
+    const status = {
 
         'StatusType': statusType,
         'Timestamp': timestamp.toISOString(),
         'MinutesLogged': minutesLogged,
         'DeviationFromTarget': deviationFromTarget
     }
+
+    postStatus(status);
 }
 function displayStatuses(data) {
     console.log(data);
@@ -102,10 +130,15 @@ function addStatus(statusType) {
 }
 
 function startTimer(statusType) {
-    const statusTypeDOM = document.getElementById('statusTypes');
-    statusTypeDOM.value = statusType;
+    const currentStatusDOM = document.getElementById('currentStatus');
+    currentStatusDOM.innerHTML = statusType;
     let timer = document.getElementById('timer');
     let intervalIDDiv = document.getElementById('intervalID');
+    const statusButtons = document.getElementById('statusButtons');
+
+    if (!statusButtons.hidden) {
+        statusButtons.hidden = true;
+    }
 
     if (timer.innerHTML == "") {
         let date = new Date(0);
@@ -138,8 +171,11 @@ function advanceTimer() {
     // If time elapsed, trigger alarm
     if (currentTimeMilliseconds == 0) {
         const alarm = document.getElementById('alarm');
+        const stopAlarmButton = document.getElementById('stopAlarmButton');
+        stopAlarmButton.hidden = false;
         alarm.loop = true;
-        alarm.play(); 
+        alarm.play();
+
     }
 
     if (shouldAddOrSubtract) {
@@ -164,7 +200,7 @@ function pauseInterval() {
         pauseResumeButton.innerHTML = "Resume";
         return;
     } else {
-        const status = document.getElementById('statusTypes').value;
+        const status = document.getElementById('currentStatus').innerHTML;
         startTimer(status);
         pauseResumeButton.innerHTML = "Pause";
     }
@@ -203,4 +239,17 @@ function getFormattedTime(timer) {
 
 function convertToMilliseconds(hours, minutes, seconds) {
     return ((hours * 60 + minutes) * 60 + seconds) * 1000;
+}
+
+function convertToMinutes(hours, minutes, seconds) {
+    const milliseconds = convertToMilliseconds(hours, minutes, seconds);
+    const allInMinutes = (milliseconds / 1000) / 60;
+    return allInMinutes;
+}
+
+function stopAlarm() {
+    const alarm = document.getElementById('alarm');
+    const alarmButton = document.getElementById('stopAlarmButton');
+    alarmButton.hidden = true;
+    alarm.pause();
 }
