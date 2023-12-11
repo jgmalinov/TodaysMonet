@@ -13,7 +13,7 @@ namespace TodaysMonet.DAL
         {
             this._context = context;
         }
-        
+
         public async Task<ActionResult<IEnumerable<Status>>> GetMonthlyStatuses()
         {
             var result = await _context.Statuses.Where(status => status.Timestamp <= DateTime.UtcNow && status.Timestamp >= DateTime.Today.AddMonths(-1)).OrderBy(status => status.Timestamp).ThenBy(status => status.StatusType).ToListAsync();
@@ -52,10 +52,19 @@ namespace TodaysMonet.DAL
             return result;
         }
 
-        public async Task PostDailyStatus(Status Status)
+        public async Task<object> PostDailyStatus(Status Status)
         {
             _context.Statuses.Add(Status);
-            await _context.SaveChangesAsync();
+            Status? StatusAlreadyLogged = _context.Statuses.Where(status => status.StatusType == Status.StatusType && status.Timestamp.Date == Status.Timestamp.Date).FirstOrDefault();
+            if (StatusAlreadyLogged == null)
+            {
+                await _context.SaveChangesAsync();
+                return new { message = "Cannot have multiple entries for the same status type and date", id = false };
+            }
+            else
+            {
+                return new { message = "Cannot have multiple entries for the same status type and date", id = StatusAlreadyLogged.id };
+            }
         }
 
         public async Task UpdateDailyStatus(Status Status)

@@ -26,7 +26,7 @@ function postStatus(status) {
     })
         .then(res => res.json())
         .then(JSONres => {
-            console.log(JSONres);
+            alert(JSONres);
             getStatuses('Daily');
         })
         .catch(error => console.error('Unable to add item', error));
