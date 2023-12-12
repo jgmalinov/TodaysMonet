@@ -8,6 +8,11 @@
 <body>
     <h1>TodaysMonet</h1>
     <main>
+        <div id="changeStatusDuration">
+            <button onclick="getStatuses('Monthly')">Monthly</button>
+            <button onclick="getStatuses('Weekly')">Weekly</button>
+            <button onclick="getStatuses('Daily')">Daily</button>
+        </div>
         <h2>Statuses</h2>
         <section id="Statuses">
             <div id="Break">
@@ -67,9 +72,12 @@
                 <button onclick="startTimer('Meeting')">Meeting</button>
             </div>
 
-            <button onclick="pauseInterval()" id="pauseResume">Pause</button>
-            <button onclick="submitStatus()">Log</button>
-            <button onclick="stopAlarm()" hidden id="stopAlarmButton">Stop Alarm</button>
+            <div id="timerButtons" hidden>
+                <button onclick="pauseInterval()" id="pauseResume">Pause</button>
+                <button onclick="submitStatus()">Log</button>
+                <button onclick="stopAlarm()" id="stopAlarmButton">Stop Alarm</button>
+            </div>
+
             <div id="timer"></div>
             <div id="intervalID" hidden></div>
         </section>

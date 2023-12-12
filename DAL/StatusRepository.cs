@@ -52,19 +52,21 @@ namespace TodaysMonet.DAL
             return result;
         }
 
-        public async Task<object> PostDailyStatus(Status Status)
+        public async Task PostDailyStatus(Status Status)
         {
-            _context.Statuses.Add(Status);
-            Status? StatusAlreadyLogged = _context.Statuses.Where(status => status.StatusType == Status.StatusType && status.Timestamp.Date == Status.Timestamp.Date).FirstOrDefault();
+            
+            var StatusAlreadyLogged = _context.Statuses.Where(status => status.StatusType == Status.StatusType && status.Timestamp.Date == Status.Timestamp.Date).FirstOrDefault();
             if (StatusAlreadyLogged == null)
             {
-                await _context.SaveChangesAsync();
-                return new { message = "Cannot have multiple entries for the same status type and date", id = false };
+                _context.Statuses.Add(Status);
             }
             else
             {
-                return new { message = "Cannot have multiple entries for the same status type and date", id = StatusAlreadyLogged.id };
+                StatusAlreadyLogged.Timestamp = Status.Timestamp;
+                StatusAlreadyLogged.DeviationFromTarget = Status.DeviationFromTarget;
+                StatusAlreadyLogged.MinutesLogged = Status.MinutesLogged;
             }
+            await _context.SaveChangesAsync();
         }
 
         public async Task UpdateDailyStatus(Status Status)

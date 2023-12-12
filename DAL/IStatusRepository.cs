@@ -12,7 +12,7 @@ namespace TodaysMonet.DAL
         Task<ActionResult<IEnumerable<Status>>> GetWeeklyStatusesByType(Statuses StatusType);
         Task<ActionResult<Status>> GetDailyStatusByType(Statuses StatusType);
         Task<Status> GetDailyStatusById(int Id);
-        Task<object> PostDailyStatus(Status status);
+        Task PostDailyStatus(Status status);
         Task UpdateDailyStatus(Status status);
         Task DeleteDailyStatus(Status status);
         bool StatusItemExists(int id);

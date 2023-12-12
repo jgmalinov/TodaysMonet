@@ -78,12 +78,8 @@ namespace TodaysMonet.Controllers
  
         public async Task<ActionResult<Status>> PostDailyStatus([FromBody] Status Status)
         {
-            
-            dynamic result = await _statusRepository.PostDailyStatus(Status);
-            if (Convert.ToBoolean(result.id) != false)
-            {
-                return Redirect(nameof(UpdateDailyStatus), new {id = result.id});
-            }
+
+            await _statusRepository.PostDailyStatus(Status);
             return CreatedAtAction(nameof(GetDailyStatusByType), new { StatusType = Status.StatusType }, Status);
         }
 

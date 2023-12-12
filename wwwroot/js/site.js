@@ -38,26 +38,19 @@ function postStatus(status) {
 function submitStatus() {
     const statusesToMinutesMapping = [{ status: 'Break', minutes: 30 }, { status: 'Lunch', minutes: 60 }, { status: 'Meeting', minutes: 120 }];
     const statusType = document.getElementById('currentStatus').innerHTML;
-    const standardStatusMinutes = statusesToMinutesMapping.find(item => item.status = statusType).minutes;
+    const standardStatusMinutes = statusesToMinutesMapping.find(item => item.status == statusType).minutes;
     const timer = document.getElementById('timer');
 
     // Determine minutes logged & target deviation
     const [overdue, hours, minutes, seconds] = getFormattedTime(timer);
-    const allInMinutes = convertToMinutes(hours, minutes, seconds); 
     const timestamp = new Date();
-    
-    let minutesLogged;
-    let deviationFromTarget;
 
-    if (overdue) {
-        const minutesOverdue = allInMinutes;
-        minutesLogged = parseInt(standardStatusMinutes + minutesOverdue);
-        deviationFromTarget = parseInt(minutesOverdue);
-    } else {
-        minutesLogged = parseInt(allInMinutes);
-        deviationFromTarget = parseInt(allInMinutes - standardStatusMinutes);
+    let deviationFromTarget = parseInt(convertToMinutes(hours, minutes, seconds));
+    if (!overdue) {
+        deviationFromTarget *= -1;
     }
-    
+
+    const minutesLogged = parseInt(standardStatusMinutes + deviationFromTarget);
     
 
     console.log(timestamp);
@@ -70,6 +63,16 @@ function submitStatus() {
         'DeviationFromTarget': deviationFromTarget
     }
 
+    // Clean up timed status
+    const statusButtons = document.getElementById("statusButtons");
+    const timerButtons = document.getElementById("timerButtons");
+    const currentStatus = document.getElementById('currentStatus');
+    customClearInterval();
+    statusButtons.hidden = false;
+    timerButtons.hidden = true;
+    timer.innerHTML = "";
+    currentStatus.innerHTML = "";
+    
     postStatus(status);
 }
 function displayStatuses(data) {
@@ -91,8 +94,10 @@ function displayStatuses(data) {
         switch (status.statusType) {
             case 'Break':
                 addTableEntry(newBreakBody, status);
+                break;
             case 'Lunch':
                 addTableEntry(newLunchBody, status);
+                break;
             case 'Meeting':
                 addTableEntry(newMeetingBody, status);
         }
@@ -135,9 +140,14 @@ function startTimer(statusType) {
     let timer = document.getElementById('timer');
     let intervalIDDiv = document.getElementById('intervalID');
     const statusButtons = document.getElementById('statusButtons');
+    const timerButtons = document.getElementById("timerButtons");
 
     if (!statusButtons.hidden) {
         statusButtons.hidden = true;
+    }
+
+    if (timerButtons.hidden) {
+        timerButtons.hidden = false;
     }
 
     if (timer.innerHTML == "") {
